@@ -1,5 +1,6 @@
 package com.goscale.assignment.view.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.goscale.assignment.di.Injectable
 import com.goscale.assignment.view.adapter.HomePagerAdapter
 import com.goscale.assignment.view.adapter.MOVIE_LIST_PAGE_INDEX
 import com.goscale.assignment.view.adapter.TV_SHOW_LIST_PAGE_INDEX
+import com.goscale.assignment.view.ui.search.SearchActivity
 import com.goscale.assignment.viewmodel.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_home_view_pager.*
 import javax.inject.Inject
@@ -48,6 +50,10 @@ class HomeViewPagerFragment : Fragment(), Injectable {
         }.attach()
 
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
+        searchShows.setOnClickListener {
+            startActivity(Intent(requireActivity(), SearchActivity::class.java))
+        }
     }
 
     private fun getTabIcon(position: Int): Int {

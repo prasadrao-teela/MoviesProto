@@ -38,7 +38,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:gravity="center"
                     android:text="@string/app_name"
-                    android:textAppearance="?attr/textAppearanceHeadline5" />
+                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
             </androidx.appcompat.widget.Toolbar>
 
@@ -54,5 +54,13 @@
             app:tabTextColor="?attr/colorPrimaryDark" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchShows"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/margin_normal"
+        android:src="@drawable/ic_search" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

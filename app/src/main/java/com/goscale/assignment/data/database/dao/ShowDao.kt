@@ -10,8 +10,14 @@ import com.goscale.assignment.data.database.entity.ShowEntity
 @Dao
 interface ShowDao {
 
+    @Query("SELECT * FROM show WHERE title LIKE :title")
+    fun findAllShows(title: String): LiveData<List<ShowEntity>>
+
     @Query("SELECT * FROM show WHERE title LIKE :title AND type LIKE :type")
-    fun fetchAllShows(title: String, type: String): LiveData<List<ShowEntity>>
+    fun findAllShows(title: String, type: String): LiveData<List<ShowEntity>>
+
+    @Query("SELECT * FROM show WHERE bookmarked LIKE :bookmarked")
+    fun findAllBookmarkedShows(bookmarked: Boolean): LiveData<List<ShowEntity>>
 
     @Query("SELECT * FROM show WHERE title LIKE :title AND type LIKE :type LIMIT 1")
     fun findOneShowWithLiveData(title: String, type: String): LiveData<ShowEntity?>

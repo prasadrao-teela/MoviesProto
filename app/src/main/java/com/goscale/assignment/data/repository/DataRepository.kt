@@ -23,7 +23,7 @@ abstract class DataRepository(
     fun fetchAllShows(title: String): LiveData<Result<List<Show>>> = resultLiveData(
         databaseQuery = {
             Transformations.map(
-                localDataSource.fetchAllShows(
+                localDataSource.findAllShows(
                     "%$title%",
                     type()
                 )
