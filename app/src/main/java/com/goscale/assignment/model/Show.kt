@@ -4,6 +4,7 @@ package com.goscale.assignment.model
  * Created by Prasad Rao on 24-05-2020 19:13
  **/
 data class Show(
+    var type: String,
     var title: String,
     var year: String,
     var imdbId: String,

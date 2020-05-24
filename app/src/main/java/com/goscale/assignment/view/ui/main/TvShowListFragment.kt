@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.goscale.assignment.R
 import com.goscale.assignment.common.constant.Constant
+import com.goscale.assignment.data.network.Result
 import com.goscale.assignment.di.Injectable
 import com.goscale.assignment.view.adapter.TvShowListAdapter
 import com.goscale.assignment.viewmodel.TvShowViewModel
@@ -39,13 +41,24 @@ class TvShowListFragment : Fragment(), Injectable {
 
         tvShowViewModel = ViewModelProvider(this, viewModelFactory).get(TvShowViewModel::class.java)
 
-        val movieListAdapter = TvShowListAdapter(emptyList())
-        recyclerViewTvShows.adapter = movieListAdapter
+        val adapter = TvShowListAdapter(emptyList())
+        recyclerViewTvShows.adapter = adapter
 
-        tvShowViewModel.tvShows.observe(viewLifecycleOwner, Observer { tvShows ->
-            movieListAdapter.updateTvShowList(tvShows)
+        tvShowViewModel.tvShows.observe(viewLifecycleOwner, Observer { result ->
+            when (result.status) {
+                Result.Status.SUCCESS -> {
+                    progressBarTvShows.visibility = View.GONE
+                    result.data?.let { adapter.updateTvShowList(it) }
+                }
+                Result.Status.LOADING -> progressBarTvShows.visibility = View.VISIBLE
+                Result.Status.ERROR -> {
+                    progressBarTvShows.visibility = View.GONE
+                    Snackbar.make(view, result.message!!, Snackbar.LENGTH_LONG).show()
+                }
+            }
         })
-        tvShowViewModel.updateTvShow(Constant.DEFAULT_MOVIE_NAME)
+
+        tvShowViewModel.updateTvShow(Constant.DEFAULT_TV_SHOW_NAME)
     }
 
     override fun onDestroyView() {

@@ -9,12 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.goscale.assignment.R
-import com.goscale.assignment.model.TvShow
+import com.goscale.assignment.model.Show
 
 /**
  * Created by Prasad Rao on 23-05-2020 13:29
  **/
-class TvShowListAdapter(private var tvShows: List<TvShow>) :
+class TvShowListAdapter(private var tvShows: List<Show>) :
     RecyclerView.Adapter<TvShowListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -39,7 +39,7 @@ class TvShowListAdapter(private var tvShows: List<TvShow>) :
         val labelTvShow: TextView = view.findViewById(R.id.label_movie)
     }
 
-    fun updateTvShowList(tvShows: List<TvShow>) {
+    fun updateTvShowList(tvShows: List<Show>) {
         this.tvShows = tvShows
         notifyDataSetChanged()
     }

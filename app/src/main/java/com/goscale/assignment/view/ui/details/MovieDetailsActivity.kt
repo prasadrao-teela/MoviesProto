@@ -14,7 +14,7 @@ import com.goscale.assignment.common.constant.Constant
 import com.goscale.assignment.data.network.Result
 import com.goscale.assignment.extension.applyToolbarMargin
 import com.goscale.assignment.extension.simpleToolbarWithHome
-import com.goscale.assignment.model.Movie
+import com.goscale.assignment.model.Show
 import com.goscale.assignment.viewmodel.MovieDetailViewModel
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -36,7 +36,7 @@ class MovieDetailsActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     private lateinit var movieDetailsViewModel: MovieDetailViewModel
 
-    private var movieDetails: Movie? = null
+    private var movieDetails: Show? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

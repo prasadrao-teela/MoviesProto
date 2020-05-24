@@ -2,8 +2,7 @@ package com.goscale.assignment.di.module
 
 import com.google.gson.Gson
 import com.goscale.assignment.BuildConfig
-import com.goscale.assignment.data.network.service.MovieService
-import com.goscale.assignment.data.network.service.TvShowService
+import com.goscale.assignment.data.network.service.ShowService
 import com.goscale.assignment.di.scope.ApplicationScope
 import dagger.Module
 import dagger.Provides
@@ -20,14 +19,8 @@ class RetrofitModule {
 
     @Provides
     @ApplicationScope
-    fun provideMovieService(retrofit: Retrofit): MovieService {
-        return retrofit.create(MovieService::class.java)
-    }
-
-    @Provides
-    @ApplicationScope
-    fun provideTvShowService(retrofit: Retrofit): TvShowService {
-        return retrofit.create(TvShowService::class.java)
+    fun provideRemoteDataService(retrofit: Retrofit): ShowService {
+        return retrofit.create(ShowService::class.java)
     }
 
     @Provides

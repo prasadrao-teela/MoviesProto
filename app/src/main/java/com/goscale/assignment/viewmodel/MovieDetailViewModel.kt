@@ -6,7 +6,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.goscale.assignment.data.network.Result
 import com.goscale.assignment.data.repository.MovieRepository
-import com.goscale.assignment.model.Movie
+import com.goscale.assignment.model.Show
 import javax.inject.Inject
 
 /**
@@ -18,9 +18,9 @@ class MovieDetailViewModel @Inject constructor(
 
     private val _movieName: MutableLiveData<String> = MutableLiveData()
 
-    val movieDetails: LiveData<Result<Movie?>> =
+    val movieDetails: LiveData<Result<Show?>> =
         Transformations.switchMap(_movieName) { movieName ->
-            movieRepository.getMovieDetails(movieName)
+            movieRepository.fetchShowDetails(movieName)
         }
 
     fun updateMovieName(movieName: String) {

@@ -32,7 +32,6 @@ class HomeViewPagerFragment : Fragment(), Injectable {
         savedInstanceState: Bundle?
     ): View? {
         movieViewModel = ViewModelProvider(this, viewModelFactory).get(MovieViewModel::class.java)
-        println("============$movieViewModel=============")
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home_view_pager, container, false)
     }

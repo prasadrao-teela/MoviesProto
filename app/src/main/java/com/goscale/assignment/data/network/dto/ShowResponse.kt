@@ -6,7 +6,7 @@ import com.goscale.assignment.common.constant.Constant
 /**
  * Created by Prasad Rao on 22-05-2020 16:29
  **/
-data class MovieResponse(
+data class ShowResponse(
 
     @SerializedName("Actors")
     val actors: String? = null,
@@ -14,14 +14,8 @@ data class MovieResponse(
     @SerializedName("Awards")
     val awards: String? = null,
 
-    @SerializedName("BoxOffice")
-    val boxOffice: String? = null,
-
     @SerializedName("Country")
     val country: String? = null,
-
-    @SerializedName("DVD")
-    val dvd: String? = null,
 
     @SerializedName("Director")
     val director: String? = null,
@@ -41,26 +35,17 @@ data class MovieResponse(
     @SerializedName("Language")
     val language: String? = null,
 
-    @SerializedName("Metascore")
-    val metaScore: String? = null,
-
     @SerializedName("Plot")
     val plot: String? = null,
 
     @SerializedName("Poster")
     val poster: String? = null,
 
-    @SerializedName("Production")
-    val production: String? = null,
-
     @SerializedName("Rated")
     val rated: String? = null,
 
-    @SerializedName("Ratings")
-    val ratings: List<RatingResponse>? = null,
-
     @SerializedName("Released")
-    val released: String? = null,
+    val releasedOn: String? = null,
 
     @SerializedName("Response")
     val response: String? = null,
@@ -69,13 +54,10 @@ data class MovieResponse(
     val runtime: String? = null,
 
     @SerializedName("Title")
-    val title: String = Constant.DEFAULT_MOVIE_NAME,
+    val title: String = Constant.DEFAULT_SHOW_TITLE,
 
     @SerializedName("Type")
-    val type: String? = null,
-
-    @SerializedName("Website")
-    val website: String? = null,
+    val type: String = Constant.SHOW_TYPE_MOVIE,
 
     @SerializedName("Writer")
     val writer: String? = null,

@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.goscale.assignment.data.network.Result
 import com.goscale.assignment.data.repository.TvShowRepository
-import com.goscale.assignment.model.TvShow
+import com.goscale.assignment.model.Show
 import javax.inject.Inject
 
 /**
@@ -17,9 +18,10 @@ class TvShowViewModel @Inject constructor(
 
     private val _tvShowName: MutableLiveData<String> = MutableLiveData()
 
-    val tvShows: LiveData<List<TvShow>> = Transformations.switchMap(_tvShowName) { tvShowName ->
-        tvShowRepository.getTvShows(tvShowName)
-    }
+    val tvShows: LiveData<Result<List<Show>>> =
+        Transformations.switchMap(_tvShowName) { tvShowName ->
+            tvShowRepository.fetchAllShows(tvShowName)
+        }
 
     fun updateTvShow(tvShowName: String) {
         if (_tvShowName.value == tvShowName) return

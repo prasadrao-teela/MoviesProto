@@ -3,8 +3,7 @@ package com.goscale.assignment.di.module
 import androidx.room.Room
 import com.goscale.assignment.GoScaleApplication
 import com.goscale.assignment.data.database.AppDatabase
-import com.goscale.assignment.data.database.dao.MovieDao
-import com.goscale.assignment.data.database.dao.TvShowDao
+import com.goscale.assignment.data.database.dao.ShowDao
 import com.goscale.assignment.di.scope.ApplicationScope
 import dagger.Module
 import dagger.Provides
@@ -26,13 +25,7 @@ class RoomModule(private val context: GoScaleApplication) {
 
     @ApplicationScope
     @Provides
-    fun provideMovieDao(database: AppDatabase): MovieDao {
-        return database.movieDao()
-    }
-
-    @ApplicationScope
-    @Provides
-    fun provideTvShowDao(database: AppDatabase): TvShowDao {
-        return database.tvShowDao()
+    fun provideShowDataDao(database: AppDatabase): ShowDao {
+        return database.showDataDao()
     }
 }

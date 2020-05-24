@@ -57,9 +57,6 @@ class MovieListFragment : Fragment(), Injectable {
             }
         })
 
-//        movieViewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
-//            movieListAdapter.updateMovieList(movies)
-//        })
         movieViewModel.updateMovieName(Constant.DEFAULT_MOVIE_NAME)
     }
 

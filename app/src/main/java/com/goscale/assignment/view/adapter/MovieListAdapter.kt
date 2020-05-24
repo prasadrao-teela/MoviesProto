@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.goscale.assignment.R
-import com.goscale.assignment.model.Movie
+import com.goscale.assignment.model.Show
 import com.goscale.assignment.view.ui.details.MovieDetailsActivity
 
 /**
  * Created by Prasad Rao on 23-05-2020 13:28
  **/
-class MovieListAdapter(private var movies: List<Movie>) :
+class MovieListAdapter(private var movies: List<Show>) :
     RecyclerView.Adapter<MovieListAdapter.ViewHolder>(), View.OnClickListener {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,7 +49,7 @@ class MovieListAdapter(private var movies: List<Movie>) :
         val labelMovie: TextView = view.findViewById(R.id.label_movie)
     }
 
-    fun updateMovieList(movies: List<Movie>) {
+    fun updateMovieList(movies: List<Show>) {
         this.movies = movies
         notifyDataSetChanged()
     }
