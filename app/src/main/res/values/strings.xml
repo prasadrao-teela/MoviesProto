@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GoScaleAssignment</string>
+
+    <string name="content_description_movie_poster">Movie Poster</string>
+
+    <string name="movie_details_title">Movie Details</string>
+
+    <string name="movies_title">Movies</string>
+    <string name="tv_shows_title">TV Shows</string>
+
+    <string name="transition_profile">transition_profile</string>
+
+</resources>

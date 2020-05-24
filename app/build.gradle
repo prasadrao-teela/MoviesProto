@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.goscale.assignment"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    // Android + Kotlin dependencies
+    implementation kotlinDependencies.stdlib
+    implementation androidDependencies.appCompat
+    implementation androidDependencies.constraintLayout
+    implementation androidDependencies.design
+    implementation androidDependencies.kotlinExtensions
+
+    // Android architecture component dependencies
+    implementation jetpack.viewModel
+    implementation jetpack.liveData
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    kapt jetpack.annotations
+
+    // Room database library
+    implementation jetpack.room
+    kapt jetpack.roomAnnotations
+    implementation jetpack.roomKotlinExtensions
+
+    // Navigation library
+    implementation jetpack.navigationFragment
+    implementation jetpack.navigationUi
+
+    // Retrofit network library dependencies
+    implementation retrofitDependencies.core
+    implementation retrofitDependencies.okhttp
+    implementation retrofitDependencies.gsonConverter
+    implementation retrofitDependencies.logging
+
+    // Co-routines
+    implementation kotlinDependencies.core
+    implementation kotlinDependencies.coroutines
+
+    // Dagger dependencies
+    implementation daggerDependencies.core
+    implementation daggerDependencies.android
+    implementation daggerDependencies.support
+    kapt daggerDependencies.annotations
+    kapt daggerDependencies.androidAnnotations
+
+    // Timber logging
+    implementation otherDependencies.timber
+
+    // Image loading library
+    implementation otherDependencies.glide
+    kapt otherDependencies.glideAnnotations
+
+    // Test dependencies
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.androidTest
+    androidTestImplementation testDependencies.espresso
+}

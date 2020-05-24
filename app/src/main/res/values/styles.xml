@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="Base.Theme.GoScale" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/sunflower_green_500</item>
+        <item name="colorOnPrimary">@color/sunflower_yellow_500</item>
+        <item name="colorPrimaryDark">@color/sunflower_green_700</item>
+        <item name="colorOnSurface">@color/sunflower_black</item>
+        <item name="colorAccent">@color/sunflower_green_700</item>
+        <item name="colorSurface">@color/sunflower_gray_50</item>
+        <item name="colorSecondary">@color/sunflower_yellow_500</item>
+        <item name="android:colorBackground">@color/sunflower_green_500</item>
+    </style>
+
+    <style name="Theme.GoScale" parent="Base.Theme.GoScale" />
+
+    <style name="Theme.GoScale.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.GoScale.DetailTheme" parent="Base.Theme.GoScale">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="Theme.GoScale.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+
+    <style name="TextAppearance.GoScale.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Theme.GoScale.CollapsedExpandedTitleText" parent="Theme.GoScale">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+</resources>
