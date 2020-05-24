@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".view.ui.details.MovieDetailsActivity"
+            android:name=".view.ui.details.ShowDetailsActivity"
             android:theme="@style/Theme.GoScale.DetailTheme" />
     </application>
 

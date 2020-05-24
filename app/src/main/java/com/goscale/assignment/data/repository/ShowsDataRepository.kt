@@ -10,54 +10,51 @@ import com.goscale.assignment.data.network.Result
 import com.goscale.assignment.data.network.datasource.ShowsDataRemoteSource
 import com.goscale.assignment.model.Show
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
 /**
- * Created by Prasad Rao on 24-05-2020 20:19
+ * Created by Prasad Rao on 24-05-2020 21:38
  **/
-abstract class DataRepository(
+class ShowsDataRepository @Inject constructor(
     private val localDataSource: ShowDao,
     private val remoteDataSource: ShowsDataRemoteSource
 ) {
-    abstract fun type(): String
+    fun fetchAllShows(title: String, type: String): LiveData<Result<List<Show>>> =
+        resultLiveData(
+            databaseQuery = {
+                Transformations.map(
+                    localDataSource.fetchAllShows(
+                        "%$title%",
+                        type
+                    )
+                ) { shows ->
+                    shows.map { showEntity -> showEntity.convertToDomainModel() }
+                }
+            },
+            networkCall = {
+                remoteDataSource.fetchAllShows(title, type)
+            },
+            saveCallResult = { networkResponse ->
+                networkResponse.results?.map { networkShow ->
+                    networkShow.convertToDatabaseEntity()
+                }?.let { shows ->
+                    localDataSource.insertAll(shows)
+                }
+            })
 
-    fun fetchAllShows(title: String): LiveData<Result<List<Show>>> = resultLiveData(
+    fun fetchShowDetails(title: String, type: String): LiveData<Result<Show?>> = resultLiveData(
         databaseQuery = {
             Transformations.map(
-                localDataSource.fetchAllShows(
-                    "%$title%",
-                    type()
-                )
-            ) { shows ->
-                shows.map { showEntity -> showEntity.convertToDomainModel() }
-            }
-        },
-        networkCall = {
-            remoteDataSource.fetchAllShows(title, type())
-        },
-        saveCallResult = { networkResponse ->
-            networkResponse.results?.map { networkShow ->
-                networkShow.convertToDatabaseEntity()
-            }?.let { shows ->
-                localDataSource.insertAll(shows)
-            }
-        })
-
-    fun fetchShowDetails(title: String): LiveData<Result<Show?>> = resultLiveData(
-        databaseQuery = {
-            Transformations.map(
-                localDataSource.findOneShowWithLiveData(
-                    title,
-                    type()
-                )
+                localDataSource.findOneShowWithLiveData(title, type)
             ) { showEntity ->
                 showEntity?.convertToDomainModel()
             }
         },
         networkCall = {
-            remoteDataSource.fetchShowDetails(title, type())
+            remoteDataSource.fetchShowDetails(title, type)
         },
         saveCallResult = { networkResponse ->
-            localDataSource.findOneShow(title, type())?.let { showEntity ->
+            localDataSource.findOneShow(title, type)?.let { showEntity ->
                 localDataSource.updateShow(
                     networkResponse.updateDatabaseEntity(showEntity)
                 )
@@ -67,11 +64,11 @@ abstract class DataRepository(
 
     private var backgroundJob: CompletableJob? = null
 
-    fun updateBookmarkStatus(title: String, bookmarkStatus: Boolean) {
+    fun updateBookmarkStatus(title: String, type: String, bookmarkStatus: Boolean) {
         backgroundJob = Job()
         backgroundJob?.let { job ->
             CoroutineScope(Dispatchers.IO + job).launch {
-                localDataSource.updateBookmarkStatus(title, type(), bookmarkStatus)
+                localDataSource.updateBookmarkStatus(title, type, bookmarkStatus)
                 withContext(Dispatchers.Main) {
                     job.cancel()
                 }
@@ -82,4 +79,5 @@ abstract class DataRepository(
     fun cancelJobs() {
         backgroundJob?.cancel()
     }
+
 }

@@ -12,9 +12,8 @@ import com.goscale.assignment.R
 import com.goscale.assignment.common.constant.Constant
 import com.goscale.assignment.data.network.Result
 import com.goscale.assignment.di.Injectable
-import com.goscale.assignment.view.adapter.TvShowListAdapter
+import com.goscale.assignment.view.adapter.ShowListAdapter
 import com.goscale.assignment.viewmodel.TvShowViewModel
-import kotlinx.android.synthetic.main.fragment_movie_list.*
 import kotlinx.android.synthetic.main.fragment_tv_show_list.*
 import javax.inject.Inject
 
@@ -41,14 +40,14 @@ class TvShowListFragment : Fragment(), Injectable {
 
         tvShowViewModel = ViewModelProvider(this, viewModelFactory).get(TvShowViewModel::class.java)
 
-        val adapter = TvShowListAdapter(emptyList())
+        val adapter = ShowListAdapter(emptyList())
         recyclerViewTvShows.adapter = adapter
 
         tvShowViewModel.tvShows.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Result.Status.SUCCESS -> {
                     progressBarTvShows.visibility = View.GONE
-                    result.data?.let { adapter.updateTvShowList(it) }
+                    result.data?.let { adapter.updateShowsData(it) }
                 }
                 Result.Status.LOADING -> progressBarTvShows.visibility = View.VISIBLE
                 Result.Status.ERROR -> {

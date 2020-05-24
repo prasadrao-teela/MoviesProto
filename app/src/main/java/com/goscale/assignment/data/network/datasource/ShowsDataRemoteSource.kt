@@ -14,11 +14,7 @@ class ShowsDataRemoteSource @Inject constructor(
         showService.fetchAllShows(title = title, type = type)
     }
 
-    suspend fun fetchAllShowsByTitle(title: String) = getResult {
-        showService.fetchAllShowsByTitle(title)
-    }
-
-    suspend fun fetchShowDetails(title: String) = getResult {
-        showService.fetchShowDetails(title)
+    suspend fun fetchShowDetails(title: String, type: String) = getResult {
+        showService.fetchShowDetails(title, type)
     }
 }

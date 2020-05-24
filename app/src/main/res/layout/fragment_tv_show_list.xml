@@ -16,7 +16,7 @@
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:spanCount="@integer/grid_columns"
         tools:context=".view.ui.HomeActivity"
-        tools:listitem="@layout/list_item_movie" />
+        tools:listitem="@layout/list_item_show" />
 
     <ProgressBar
         android:id="@+id/progressBarTvShows"

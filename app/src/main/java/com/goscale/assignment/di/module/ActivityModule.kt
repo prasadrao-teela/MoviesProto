@@ -1,7 +1,7 @@
 package com.goscale.assignment.di.module
 
 import com.goscale.assignment.view.ui.HomeActivity
-import com.goscale.assignment.view.ui.details.MovieDetailsActivity
+import com.goscale.assignment.view.ui.details.ShowDetailsActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -15,5 +15,5 @@ abstract class ActivityModule {
     abstract fun contributeHomeActivity(): HomeActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeMovieDetailsActivity(): MovieDetailsActivity
+    abstract fun contributeMovieDetailsActivity(): ShowDetailsActivity
 }

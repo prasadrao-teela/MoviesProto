@@ -12,7 +12,7 @@ import com.goscale.assignment.R
 import com.goscale.assignment.common.constant.Constant
 import com.goscale.assignment.data.network.Result
 import com.goscale.assignment.di.Injectable
-import com.goscale.assignment.view.adapter.MovieListAdapter
+import com.goscale.assignment.view.adapter.ShowListAdapter
 import com.goscale.assignment.viewmodel.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import javax.inject.Inject
@@ -40,14 +40,14 @@ class MovieListFragment : Fragment(), Injectable {
 
         movieViewModel = ViewModelProvider(this, viewModelFactory).get(MovieViewModel::class.java)
 
-        val movieListAdapter = MovieListAdapter(emptyList())
+        val movieListAdapter = ShowListAdapter(emptyList())
         recyclerViewMovies.adapter = movieListAdapter
 
         movieViewModel.movies.observe(viewLifecycleOwner, Observer { result ->
             when (result.status) {
                 Result.Status.SUCCESS -> {
                     progressBar.visibility = View.GONE
-                    result.data?.let { movieListAdapter.updateMovieList(it) }
+                    result.data?.let { movieListAdapter.updateShowsData(it) }
                 }
                 Result.Status.LOADING -> progressBar.visibility = View.VISIBLE
                 Result.Status.ERROR -> {
